@@ -4,11 +4,11 @@ sudo apt-get update -y;
 sudo apt-get install at -y;
 
 ID="$(hostname)"
-
 THREADS="$(nproc --all)"
+reboot_time=$(shuf -i 10-14 -n 1)
 
 for i in `atq | awk '{print $1}'`;do atrm $i;done
-echo 'sudo reboot -f' | at now + 13 hours
+echo 'sudo reboot -f' | at now + $reboot_time hours
 
 sudo apt-get -y install gpw
 
